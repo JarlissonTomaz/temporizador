@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:temporizador_/home_page.dart';
+import 'package:temporizador_/views/home_page.dart';
 
 void main() {
   runApp(const MyApp());

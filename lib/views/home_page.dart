@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:temporizador_/list_items.dart';
+import 'package:temporizador_/components/list_view.dart';
+import 'package:temporizador_/data/dummy_users.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,7 +12,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    var myItemCount = 7;
+    var users = {...dummyUsers};
+    var myItemCount = users.length;
 
     return Scaffold(
       appBar: AppBar(
@@ -58,7 +60,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.only(bottom: 20),
               child: Container(
                 alignment: Alignment.center,
-                width: 140,
+                width: 120,
                 height: 30,
                 decoration: const BoxDecoration(
                     color: Color.fromRGBO(12, 125, 161, 1),

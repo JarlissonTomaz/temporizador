@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:temporizador_/components/list_view.dart';
-import 'package:temporizador_/data/dummy_users.dart';
+import 'package:temporizador_/modals/user.dart';
+import 'package:temporizador_/provider/users_state.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,8 +14,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    var users = {...dummyUsers};
-    var myItemCount = users.length;
+    final Users users = Provider.of(context);
+
+    var myItemCount = users.count;
 
     return Scaffold(
       appBar: AppBar(
@@ -42,7 +45,10 @@ class _HomePageState extends State<HomePage> {
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                  left: 10, top: 10, right: 10, bottom: 30),
+                left: 10,
+                top: 10,
+                right: 10,
+              ),
               child: Container(
                 alignment: Alignment.center,
                 width: 240,
@@ -57,23 +63,36 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: Container(
-                alignment: Alignment.center,
-                width: 120,
-                height: 30,
-                decoration: const BoxDecoration(
-                    color: Color.fromRGBO(12, 125, 161, 1),
-                    borderRadius: BorderRadius.all(Radius.circular(25))),
-                child: const Text('Adicionar',
-                    style: TextStyle(color: Colors.white)),
+              padding: const EdgeInsets.only(),
+              child: GestureDetector(
+                onTap: () {
+                  users.put(User(
+                    name: "name",
+                    toy: "toy",
+                  ));
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 120,
+                  height: 30,
+                  decoration: const BoxDecoration(
+                      color: Color.fromRGBO(12, 125, 161, 1),
+                      borderRadius: BorderRadius.all(Radius.circular(25))),
+                  child: const Text('Adicionar',
+                      style: TextStyle(color: Colors.white)),
+                ),
               ),
             )
           ],
         ),
         Expanded(
-            child: MyListView(
-          itemCount: myItemCount,
+            child: Padding(
+          padding: const EdgeInsets.only(
+            top: 10,
+          ),
+          child: MyListView(
+            itemCount: myItemCount,
+          ),
         ))
       ]),
     );

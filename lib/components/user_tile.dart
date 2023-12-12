@@ -5,11 +5,14 @@ import 'package:temporizador_/modals/user.dart';
 class UserTile extends StatelessWidget {
   const UserTile(this.user, {super.key});
   final User user;
-
   @override
   Widget build(BuildContext context) {
+// ...
+
+// Use o valor de timeIsUp
+
     return Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
+        padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
         child: Container(
           width: 390,
           height: 60,

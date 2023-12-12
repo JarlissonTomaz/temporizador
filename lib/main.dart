@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:temporizador_/provider/users_state.dart';
 import 'package:temporizador_/views/home_page.dart';
 
 void main() {
@@ -10,8 +12,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
-    );
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => Users(),
+          ),
+        ],
+        child: const MaterialApp(
+          home: HomePage(),
+        ));
   }
 }

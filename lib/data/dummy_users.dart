@@ -5,6 +5,5 @@ Map<int, User> dummyUsers = {
     id: 1,
     name: 'João',
     toy: 'Pula-Pula',
-    timer: 30,
   ),
 };

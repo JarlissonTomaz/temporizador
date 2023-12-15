@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:temporizador_/components/timer_tile.dart';
 import 'package:temporizador_/modals/user.dart';
+import 'package:temporizador_/routes/app_routes.dart';
 
 class UserTile extends StatelessWidget {
   const UserTile(this.user, {super.key});
@@ -11,53 +12,20 @@ class UserTile extends StatelessWidget {
 
 // Use o valor de timeIsUp
 
-    return Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-        child: Container(
-          width: 390,
-          height: 60,
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.grey,
-                  blurRadius: 3,
-                  offset: Offset(-1, 3),
-                )
-              ]),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10, top: 6),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          user.toy,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 1),
-                      child: Text(
-                        user.name,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const Padding(
-                        padding: EdgeInsets.only(top: 1), child: CountDowm()),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ));
+    return GestureDetector(
+        onTap: () {
+          Navigator.of(context).pushNamed(AppRoutes.userTimer);
+        },
+        child: Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+            child: ListTile(
+              title: Text(user.toy),
+              subtitle: Text(user.name),
+              trailing: const CountDowm(),
+              tileColor: Colors.white,
+              onTap: () {
+                Navigator.of(context).pushNamed(AppRoutes.userTimer);
+              },
+            )));
   }
 }

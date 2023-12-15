@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:temporizador_/components/list_view.dart';
 import 'package:temporizador_/modals/user.dart';
@@ -14,6 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     final Users users = Provider.of(context);
 
     var myItemCount = users.count;
@@ -24,6 +26,7 @@ class _HomePageState extends State<HomePage> {
             style: TextStyle(color: Colors.black)),
         backgroundColor: const Color.fromRGBO(235, 238, 255, 1),
         centerTitle: true,
+        shadowColor: Colors.transparent,
       ),
       backgroundColor: const Color.fromRGBO(235, 238, 255, 1),
       body: Column(children: [
@@ -63,7 +66,9 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(),
+              padding: const EdgeInsets.only(
+                top: 10,
+              ),
               child: GestureDetector(
                 onTap: () {
                   users.put(User(

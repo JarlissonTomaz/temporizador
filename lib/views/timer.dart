@@ -25,14 +25,11 @@ class _UserTimerState extends State<UserTimer> {
         actions: [
           PopupMenuButton(
               itemBuilder: (context) => [
-                    PopupMenuItem(
-                      child: Text('tom'),
+                    const PopupMenuItem(
+                      child: Text('Editar nome/Brinquedo'),
                     ),
-                    PopupMenuItem(
-                      child: Text('+'),
-                    ),
-                    PopupMenuItem(
-                      child: Text('bia'),
+                    const PopupMenuItem(
+                      child: Text('Editar Tempo'),
                     ),
                   ])
         ],

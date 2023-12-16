@@ -25,11 +25,20 @@ class _UserTimerState extends State<UserTimer> {
         actions: [
           PopupMenuButton(
               itemBuilder: (context) => [
-                    const PopupMenuItem(
-                      child: Text('Editar nome/Brinquedo'),
+                    PopupMenuItem(
+                      child: const Text('Editar nome/Brinquedo',
+                          style: TextStyle(
+                            color: Color.fromRGBO(130, 182, 198, 1),
+                          )),
+                      onTap: () {
+                        _showBottomSheet(context);
+                      },
                     ),
                     const PopupMenuItem(
-                      child: Text('Editar Tempo'),
+                      child: Text('Editar Tempo',
+                          style: TextStyle(
+                            color: Color.fromRGBO(130, 182, 198, 1),
+                          )),
                     ),
                   ])
         ],
@@ -220,6 +229,83 @@ class _UserTimerState extends State<UserTimer> {
           ],
         ),
       ),
+    );
+  }
+
+  void _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              // Conteúdo da folha modal
+
+              Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(
+                      left: 10.0,
+                      top: 10.0,
+                      bottom: 50,
+                    ),
+                    child: Text(
+                      'Editar Nome/Brinquedo',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.grey),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 90.0,
+                      bottom: 50,
+                    ),
+                    child: IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(
+                          Icons.cancel_outlined,
+                          color: Colors.grey,
+                        )),
+                  )
+                ],
+              ),
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: 10.0,
+                  bottom: 50.0,
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), hintText: "Editar "),
+                ),
+              ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 14.0),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: 200,
+                      height: 60,
+                      decoration: const BoxDecoration(
+                          color: Color.fromRGBO(12, 125, 161, 1),
+                          borderRadius: BorderRadius.all(Radius.circular(40))),
+                      child: const Text('Editar',
+                          style: TextStyle(color: Colors.white, fontSize: 15)),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

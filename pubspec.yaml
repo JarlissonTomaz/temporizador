@@ -36,7 +36,11 @@ dependencies:
   
   timer_count_down: ^2.2.2
   provider: ^6.1.1
-  circular_countdown_timer: ^0.2.3
+  circular_countdown_timer:
+    git:
+      url: https://github.com/ceranco/circular_countdown_timer
+      ref: on_change_fix
+  shared_preferences: ^2.0.13
 
 dev_dependencies:
   flutter_test:

@@ -1,11 +1,15 @@
+import 'package:temporizador_/provider/countdown_provider.dart';
+
 class User {
-  final int? id;
-  final String name;
-  final String toy;
+  int? id;
+  String name;
+  String toy;
+  CountdownProvider countdownProvider;
 
   User({
     this.id,
     required this.name,
     required this.toy,
+    required this.countdownProvider,
   });
 }

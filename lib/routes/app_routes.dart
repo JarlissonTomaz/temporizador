@@ -1,4 +1,4 @@
 class AppRoutes {
   static const userHome = '/';
-  static const userTimer = '/timer';
+  static const userCountdown = '/Countdown';
 }

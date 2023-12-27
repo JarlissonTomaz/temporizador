@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:temporizador_/provider/countdown_provider.dart';
 import 'package:temporizador_/provider/users_state.dart';
 import 'package:temporizador_/routes/app_routes.dart';
+import 'package:temporizador_/views/countdown.dart';
 import 'package:temporizador_/views/home_page.dart';
-import 'package:temporizador_/views/timer.dart';
 
+CountdownProvider createCountdownProvider() => CountdownProvider();
 void main() {
   runApp(const MyApp());
 }
@@ -22,11 +24,14 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => Users(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => createCountdownProvider(),
+        )
       ],
       child: MaterialApp(
         routes: {
           AppRoutes.userHome: (_) => const HomePage(),
-          AppRoutes.userTimer: (_) => const UserTimer(),
+          AppRoutes.userCountdown: (_) => const AppCountdown(),
         },
       ),
     );

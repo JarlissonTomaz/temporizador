@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:temporizador_/components/list_view.dart';
 import 'package:temporizador_/modals/user.dart';
+import 'package:temporizador_/provider/countdown_provider.dart';
 import 'package:temporizador_/provider/users_state.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
-    final Users users = Provider.of(context);
+    final Users users = Provider.of<Users>(context);
 
     var myItemCount = users.count;
 
@@ -70,24 +71,33 @@ class _HomePageState extends State<HomePage> {
                 top: 10,
               ),
               child: GestureDetector(
-                onTap: () {
-                  users.put(User(
-                    name: "name",
-                    toy: "toy",
-                  ));
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  width: 120,
-                  height: 30,
-                  decoration: const BoxDecoration(
-                      color: Color.fromRGBO(12, 125, 161, 1),
-                      borderRadius: BorderRadius.all(Radius.circular(25))),
-                  child: const Text('Adicionar',
-                      style: TextStyle(color: Colors.white)),
-                ),
-              ),
-            )
+                  onTap: () {
+                    print(
+                        'Antes de adicionar um novo usuário: ${users.all.map((user) => user.countdownProvider.hashCode)}');
+
+                    users.put(User(
+                      name: "name",
+                      toy: "toy",
+                      countdownProvider:
+                          CountdownProvider(), // Certifique-se de criar uma nova instância
+                    ));
+
+                    print(
+                        'Depois de adicionar um novo usuário: ${users.all.map((user) => user.countdownProvider.hashCode)}');
+
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: 120,
+                    height: 30,
+                    decoration: const BoxDecoration(
+                        color: Color.fromRGBO(12, 125, 161, 1),
+                        borderRadius: BorderRadius.all(Radius.circular(25))),
+                    child: const Text('Adicionar',
+                        style: TextStyle(color: Colors.white)),
+                  )),
+            ),
           ],
         ),
         Expanded(
